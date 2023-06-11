@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-lg-8 text-center">
+    <div class="form-group">
+      <div class="input-group" cdkDropList (cdkDropListDropped)="drop($event)">
+        <label class="btn btn-outline-secondary text-center" for="fileField" style="width: 100%;">
+          <i class="fa fa-plus fa-lg fa-fw" aria-hidden="true"></i>
+          <br>
+          Cargar Archivo Excel (.XLS)
+          <input type="file" id="fileField" name="file" style="display: none;">
+        </label>
+      </div>
+    </div>
+    <div class="drag-drop-container" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let file of files; let i = index" cdkDrag>
+        {{file.name}}
+      </div>
+    </div>
+    <input type="file" (change)="fileBrowseHandler($event)">
+    <div class="container table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">PLACA</th>
+            <th scope="col">CAPACIDAD</th>
+            <th scope="col">DISPONIBILIDAD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">PLACA 01</th>
+            <td>Mark</td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                  (change)="changeAvailable()">
+                <label class="form-check-label" for="flexSwitchCheckDefault" id="switch-label">
+                  <b *ngIf="this.isAvailable">DISPONIBLE</b>
+                  <b *ngIf="!this.isAvailable">OCUPADO</b>
+                </label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">PLACA 02</th>
+            <td>Jacob</td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault" id="switch-label"><b>OCUPADO</b></label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">PLACA 03</th>
+            <td>Larry</td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault" id="switch-label"><b>OCUPADO</b></label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">PLACA 04</th>
+            <td>Larry</td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault" id="switch-label"><b>OCUPADO</b></label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">PLACA 05</th>
+            <td>Larry</td>
+            <td>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault" id="switch-label"><b>OCUPADO</b></label>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-4 align-items-center">
+    <div class="row">
+      <div class="col-12">
+        <div class="bg-info bg-opacity-10 p-3 pb-1">
+          <p class="font-blue-light-large mb-1"><b>PENDIENTES</b></p>
+          <p class="font-blue-light-small">PEDIDOS PENDIENTES POR ASIGNAR</p>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="bg-light">
+          <div class="p-3">
+            <div class="row">
+              <div class="col-6">
+                <p class="font-blue-light-medium mb-0"><b>GUIA 0000000001</b></p>
+                <p class="font-blue-light-medium">CIUDAD | ZONA</p>
+              </div>
+              <div class="col-3 align-items-center">
+                <button type="button" class="btn btn-blue"><b class="font-white-xs">Asignar</b></button>
+              </div>
+              <div class="col-3">
+                <button type="button" class="btn btn-orange"><b class="font-white-xs">Ver Guía</b></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.hr-blue{
+  color: #2b91f1;
+}
+
+.icon-blue{
+  color: #2b91f1;
+}
+
+.font-blue-light-bold {
+  color: #2b91f1;
+  font-weight:500;
+}
+
+.font-blue-light-small {
+  color: #2b91f1;
+  font-size: small;
+}
+
+.btn-orange{
+  background-color: #ef8533;
+}
+
+.font-white-large {
+  color: white;
+  font-size: large;
+}

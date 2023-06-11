@@ -1,0 +1,136 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-3 col-12 text-center mx-lg-1">
+      <div class="row">
+        <div class="col-12 p-lg-5"></div>
+        <div class="col-12 p-lg-5 mt-lg-4"><i class="fa-solid fa-circle-user fa-6x icon-blue mb-lg-3"></i>
+          <p class="display-6 font-blue-light-bold">CLIENTE</p>
+        </div>
+        <div class="col-12 p-lg-5"></div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-6 mx-lg-3 p-lg-5">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i
+              class="fa-solid fa-building-user fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="text" class="form-control form-control-xs">
+            <p class="font-blue-light-small">RAZÓN SOCIAL</p>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-blue">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i
+              class="fa-solid fa-map-location-dot fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="text" class="form-control form-control-xs">
+            <p class="font-blue-light-small">DIRECCIÓN</p>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-blue">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i
+              class="fa-solid fa-tree-city fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <select class="form-control form-select-xs">
+              <option selected>Seleccione una ciudad</option>
+              <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+            </select>
+            <p class="font-blue-light-small">CIUDAD</p>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-blue">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i
+              class="fa-sharp fa-solid fa-user fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="text" class="form-control form-control-xs">
+            <p class="font-blue-light-small">USUARIO</p>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-blue">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i class="fa-solid fa-key fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="password" class="form-control form-control-xs">
+            <p class="font-blue-light-small">CONTRASEÑA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-6 mx-lg-3 p-lg-5">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i class="fa-solid fa-person fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="text" class="form-control form-control-xs">
+            <p class="font-blue-light-small">CONTACTO CLIENTE</p>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-blue">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i
+              class="fa-solid fa-mobile-screen-button fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="number" class="form-control form-control-xs">
+            <p class="font-blue-light-small">CELULAR</p>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-blue">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i class="fa-solid fa-phone fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="number" class="form-control form-control-xs">
+            <p class="font-blue-light-small">TÉLEFONO</p>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-blue">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i
+              class="fa-solid fa-envelope fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="email" class="form-control form-control-xs">
+            <p class="font-blue-light-small">CORREO ELECTRÓNICO</p>
+          </div>
+        </div>
+      </div>
+      <hr class="hr-blue">
+      <div class="row">
+        <div class="row">
+          <label class="col-2 col-form-label col-form-label"><i
+              class="fa-sharp fa-solid fa-barcode fa-xl icon-blue"></i></label>
+          <div class="col-10">
+            <input type="number" class="form-control form-control-xs">
+            <p class="font-blue-light-small">CÓDIGO FACTURACIÓN</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-3 text-center">
+    </div>
+    <div class="col-lg-8 col-12 mx-lg-3 text-center">
+      <div class="col-12 mx-auto">
+        <button type="button" class="btn btn-orange"><b class="font-white-large">CREAR USUARIO</b></button>
+      </div>
+    </div>
+  </div>
+</div>

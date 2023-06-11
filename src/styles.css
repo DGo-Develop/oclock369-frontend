@@ -1,0 +1,24 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.font-blue {
+    color: #226db5;
+}
+
+.btn-blue {
+    background-color: #226db5;
+}
+
+.form-control {
+    border-radius: 0 !important;
+    border-color: #226db5 !important;
+}
+
+.link-recovery {
+    color: #2b91f1;
+    font-size: 80%;
+    text-align: right;
+}
+
+a:link {
+    text-decoration: none;
+}

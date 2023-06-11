@@ -1,0 +1,254 @@
+<!-- app.component.html
+
+<div *ngIf="guide">
+  <p>Guide ID: {{guide.guide_id}}</p>
+  <p>Sender ID: {{guide.sender_id}}</p>
+  <div *ngFor="let email of guide.sender.emails">
+    <p>Email: {{email.email_address}}</p>
+  </div>
+  <div *ngFor="let history of guide.traceability.history">
+    <p>History: {{history.description}}</p>
+  </div>
+Add more as per your requirement -->
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-3 gx-5 mx-auto">
+      <div class="row mt-4">
+        <div class="row p-3 mb-2 bg-info text-dark bg-opacity-10" *ngIf="guide">
+          <div class="col-12 text-center pb-3 px-0">
+            <a class="nav-link font-white"><i class="fa-solid fa-circle-user fa-xl icon-blue mx-3"></i><b
+                class="title-blue">Información Remitente</b></a>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="mb-2 font-blue">Nombre: <b>{{guide.sender.first_name}}</b><b> {{guide.sender.last_name}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Identificación: <b>{{guide.sender.identification}}</b></p>
+            </div>
+            <div class="col-12 mb-0">
+              <p class="mb-2 font-blue">Dirección: <b>{{guide.sender.address}}</b></p>
+            </div>
+            <div class="col-12 mb-0">
+              <p class="mb-2 font-blue">Cód. Postal: <b>{{guide.sender.address}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">País / Ciudad: <b>{{guide.sender.address}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Fecha Recepción: <b>{{guide.date_created}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Contenido: <b>{{guide.must_contain}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Cantidad de Unidades:<b>{{guide}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Peso: <b>{{guide.weight}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Peso Volumétrico: <b>{{guide.volumetric_weight}}</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class=" row p-3 mb-2 bg-info text-dark bg-opacity-10">
+          <div class="col-12 text-center pb-3 px-0">
+            <a class="nav-link font-white"><i class="fa-solid fa-circle-user fa-xl icon-blue mx-3"></i><b
+                class="title-blue">Información Destinatario</b></a>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="mb-2 font-blue">Nombre: <b>{{guide?.recipient?.first_name}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Identificación: <b>{{guide?.recipient?.identification}}</b></p>
+            </div>
+            <div class="col-12 mb-0">
+              <p class="mb-2 font-blue">Dirección: <b>{{guide?.recipient?.address}}</b></p>
+            </div>
+            <div class="col-12 mb-0">
+              <p class="mb-2 font-blue">Cód. Postal: <b>{{guide?.recipient?.address}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">País / Ciudad: <b>{{guide?.recipient?.address}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Fecha Recepción: <b>{{guide?.traceability}}</b></p>
+            </div>
+            <div class="col-12">
+              <p class="mb-2 font-blue">Contenido: <b>{{guide?.must_contain}}</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-9 gx-5">
+      <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-8 text-center mx-auto">
+          <p class="title-blue"><b>ESTADO DE ENTREGA</b></p>
+        </div>
+        <div class="col-2"></div>
+      </div>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="order my-3">
+            <div class="col-lg-12 col-4">
+              <div class="progressbar-track">
+                <ul class="progressbar">
+                  <li id="step-1" class="text-muted green">
+                    <span class="fa-solid fa-truck"></span>
+                  </li>
+                  <li id="step-2" class="text-muted green">
+                    <i class="fa-solid fa-pallet"></i>
+                  </li>
+                  <li id="step-3" class="text-muted green">
+                    <span class="fa-solid fa-warehouse"></span>
+                  </li>
+                  <li id="step-4" class="text-muted">
+                    <span class="fa-solid fa-truck"></span>
+                  </li>
+                  <li id="step-4" class="text-muted">
+                    <span class="fa-solid fa-house"></span>
+                  </li>
+                </ul>
+                <div id="tracker"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-5 justify-content-center">
+          <div class="mx-auto">
+            <div class="row mt-2">
+              <div class="col text-center"></div>
+              <div class="col text-center"></div>
+              <div class="col text-center"></div>
+              <div class="col text-center"></div>
+              <div class="col text-center"></div>
+            </div>
+            <div class="row">
+              <div class="col text-center"></div>
+              <div class="col text-center"></div>
+              <div class="col text-center"></div>
+              <div class="col text-center"></div>
+              <div class="col text-center"></div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <p class="font-orange">FECHA RECOGIDA</p>
+              </div>
+              <div class="col">
+                <p class="font-orange">CIUDAD BODEGA ORIGEN</p>
+              </div>
+              <div class="col">
+                <p class="font-orange">BODEGA CENTRAL</p>
+              </div>
+              <div class="col">
+                <p class="font-orange">PROB. ENTREGA</p>
+              </div>
+              <div class="col">
+                <p class="font-orange">FECHA ENTREGA</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.suggested_collection_date}}</b></p>
+              </div>
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.sender?.address}}</b></p>
+              </div>
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.recipient?.address}}</b></p>
+              </div>
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.date_probable_delivery}}</b></p>
+              </div>
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.traceability}}</b></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="font-orange">CIUDAD DE ORIGEN</p>
+              </div>
+              <div class="col">
+                <p class="font-orange">FECHA ARRIBO A BODEGA</p>
+              </div>
+              <div class="col">
+                <p class="font-orange">FECHA ARRIBO A BODEGA</p>
+              </div>
+              <div class="col">
+                <p class="font-orange">CIUDAD DE ENTREGA</p>
+              </div>
+              <div class="col">
+                <p class="font-orange">CIUDAD DE ENTREGA</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.sender?.address}}</b></p>
+              </div>
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.date_created}}</b></p>
+              </div>
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.date_created}}</b></p>
+              </div>
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.recipient?.address}}</b></p>
+              </div>
+              <div class="col">
+                <p class="font-orange"><b>{{guide?.recipient?.address}}</b></p>
+              </div>
+            </div>
+            <div class="row mt-5 justify-content-center">
+              <div class="col-11 row p-3 bg-info text-dark bg-opacity-10 mx-auto">
+                <div class="col-6 col-lg-4">
+                  <div class="row">
+                    <p class="font-blue">Prueba de Entrega</p>
+                  </div>
+                  <div class="row">
+                    <p class="font-blue">VER PRUEBA
+                      DE ENTREGA</p>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="col-10 mx-auto">
+                      <button type="button" class="btn btn-primary" style="font-size: 12px;">DESCARGAR</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-lg-4">
+                  <div class="row">
+                    <p class="font-blue">Fecha de Entrega:<b>{{guide?.traceability}}</b></p>
+                  </div>
+                  <div class="row">
+                    <p class="font-blue">Régimen:<b></b></p>
+                  </div>
+                  <div class="row">
+                    <p class="font-blue">Hora:<b>{{guide?.traceability}}</b></p>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                  <div class="row">
+                    <p class="font-blue">O'Clock S.A.S.</p>
+                  </div>
+                  <div class="row">
+                    <p class="font-blue">Información de rastreo en: www.oclock369.com</p>
+                  </div>
+                  <div class="row">
+                    <p class="font-blue">Línea de atención al usuario 601 7977787</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+.font-blue-light-large {
+  color: #2b91f1;
+  font-size: large;
+}
+
+.font-blue-light-small {
+  color: #2b91f1;
+  font-size: small;
+}
+
+.font-blue-light-medium {
+  color: #2b91f1;
+  font-size: medium;
+}
+
+.font-white-small {
+  color: white;
+  font-size: small;
+}
+
+.font-white-xs {
+  color: white;
+  font-size: x-small;
+}
+
+.font-blue-light-xs {
+  color: #2b91f1;
+  font-size:x-small;
+}
+
+.bg-blue-light{
+  background-color: #2b91f1;
+}
+
+.btn-orange{
+  background-color: #ef8533;
+}
+
+.btn-blue{
+  background-color: #2b91f1;
+}
+
+.form-check-input:checked {
+  background-color: #198754;  /* Este es el color verde de Bootstrap */
+  border-color: #198754;  /* También cambiamos el color del borde */
+}
+
+.form-check-input:checked:focus {
+  box-shadow: 0 0 0 .25rem rgba(25, 135, 84, .5);  /* Cambiamos el color del foco */
+}
+
+
+
+

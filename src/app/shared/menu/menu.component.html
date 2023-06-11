@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg bg-color-blue navbar-dark justify-content-center">
+  <div class="container-fluid bg-color-orange-light col-lg-2 col-sm-10">
+    <div class="col-lg-6 col-3">
+      <img class="img-fluid" src="../../../assets/img/Logo.png" alt="Logo">
+    </div>
+    <div class="col-lg-6 col-9 text-center">
+      <b style="font-size: 12px;">TRACK 369</b>
+    </div>
+  </div>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center col-lg-8 col-sm-2" id="navbarNav">
+    <ul class="navbar-nav bg-color-blue">
+      <li class="nav-item dropdown mx-3" *ngFor="let menu of menus">
+        <ng-container *ngIf="menu.children && menu.children.length > 0; else noDropdown" >
+          <a class="nav-link dropdown-toggle font-white" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="{{menu.icon}} color-orange fa-2xl mx-3"></i>
+            <b>{{ menu.name }}</b>
+          </a>
+          <ul class="dropdown-menu bg-color-orange-light" aria-labelledby="navbarDropdown">
+            <li *ngFor="let child of menu.children">
+              <a class="dropdown-item" [href]="'/#/' + child.path" (click)="navigateTo(child)">{{ child.name }}</a>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-template #noDropdown>
+          <a class="nav-link font-white" [href]="'/#/' + menu.path" (click)="navigateTo(menu)">
+            <i class="{{menu.icon}} color-orange fa-2xl mx-3"></i>
+            <b>{{ menu.name }}</b>
+          </a>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+</nav>

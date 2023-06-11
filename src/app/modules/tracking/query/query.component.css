@@ -1,0 +1,83 @@
+.font-orange{
+  color: #ef8533;
+  font-size: small;
+}
+
+.font-blue{
+  color: #3ca1fb;
+  font-size: small;
+}
+
+.title-blue{
+  color: #3ca1fb;
+  font-size: medium;
+}
+
+.icon-blue{
+  color: #3ca1fb;
+}
+
+.order .progressbar-track {
+    position: relative;
+}
+
+.order .progressbar-track .progressbar {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0rem;
+}
+
+.order .progressbar-track .progressbar li {
+    font-size: 1.5rem;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: #dddddd;
+    z-index: 100;
+    position: relative;
+}
+
+.order .progressbar-track .progressbar li.green {
+    border: 1px solid #196DB3;
+    background-color: #BEDEF5;
+}
+
+#tracker {
+    position: absolute;
+    border-top: 3px solid #F18536;
+    width: 100%;
+    top: 25px;
+}
+
+.green {
+    color: #196DB3 !important;
+}
+
+.order .progressbar-track .progressbar li::after {
+  position:absolute;
+  font-size: small;
+  top: 50px;
+}
+
+#step-1::after {
+  content: 'RECOGIDA';
+}
+
+#step-2::after {
+  content: 'BODEGA ORIGEN';
+}
+
+#step-3::after {
+  content: 'BODEGA';
+}
+
+#step-4::after {
+  content: 'EN REPARTO';
+}
+
+#step-5::after {
+  content: 'ENTREGADO';
+}
+

@@ -1,0 +1,24 @@
+<div class="modal" tabindex="-1" id="custom-modal" #customModal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"
+                [ngClass]="{'bg-success': modalType === 'success', 'bg-warning': modalType === 'warning', 'bg-danger': modalType === 'danger'}">
+                <h5 class="modal-title text-white">
+                    Oclock 369: Track 369</h5>
+                <button type="button" class="btn-close"
+                    [ngClass]="{'text-success': modalType === 'success', 'text-warning': modalType === 'warning', 'text-danger': modalType === 'danger'}"
+                    data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p
+                    [ngClass]="{'text-success': modalType === 'success', 'text-warning': modalType === 'warning', 'text-danger': modalType === 'danger'}">
+                    {{modalMessage}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn"
+                    [ngClass]="{'btn-success': modalType === 'success', 'btn-warning': modalType === 'warning', 'btn-danger': modalType === 'danger'}"
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
