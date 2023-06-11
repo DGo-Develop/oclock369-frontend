@@ -1,8 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpHandler,
+  HttpRequest,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import jwt_decode from 'jwt-decode';
-import { tap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { AuthResponse, DecodedToken } from './auth.interfaces';
 import { environment } from 'src/environments/environment';
 import { User } from './user.model';
@@ -33,6 +38,7 @@ export class AuthService {
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('role');
     this.isLoggedIn.next(false);
+
     this.router.navigate(['/login']);
   }
 
@@ -46,8 +52,6 @@ export class AuthService {
       if (this.isTokenExpiredHelper(refreshToken)) {
         this.logout();
         return true;
-      } else {
-        this.refreshTokens();
       }
     }
     return false;
@@ -55,41 +59,62 @@ export class AuthService {
 
   isLoggedIn = new BehaviorSubject<boolean>(this.checkIfLoggedIn());
 
-  private checkIfLoggedIn(): boolean {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-    return isAuthenticated === 'true' && !this.isTokenExpired();
+  refreshTokens(): Observable<string> {
+    return new Observable((observer) => {
+      const refreshToken = localStorage.getItem('refreshToken');
+      if (refreshToken && !this.isTokenExpiredHelper(refreshToken)) {
+        this.http
+          .get<AuthResponse>(`${environment.apiUrl}/users/auth/refreshToken`, {
+            headers: { refreshToken: refreshToken },
+          })
+          .subscribe(
+            (response) => {
+              this.storeTokens(response.data);
+              observer.next(response.data.accessToken);
+              observer.complete();
+            },
+            (error) => {
+              this.logout();
+              observer.error(error);
+            }
+          );
+      } else {
+        this.logout();
+        observer.error('No refresh token');
+      }
+    });
   }
 
-  private refreshTokens(): void {
-    const refreshToken = localStorage.getItem('refreshToken');
-    if (refreshToken)
-      if (!this.isTokenExpiredHelper(refreshToken)) {
-        if (refreshToken) {
-          this.http
-            .get<AuthResponse>(
-              `${environment.apiUrl}/users/auth/refreshToken`,
-              {
-                headers: { refreshToken: refreshToken },
-              }
-            )
-            .subscribe(
-              (response) => {
-                this.storeTokens(response.data);
-              },
-              (error) => {
-                this.logout();
-                // Si ocurre un error al renovar el token, redirige al usuario a la página de login
-                this.router.navigate(['/login']);
-              }
-            );
-        } else {
-          // Si no hay refreshToken, redirige al usuario a la página de login
-          this.router.navigate(['/login']);
-        }
-      } else {
-        // Si no hay refreshToken, redirige al usuario a la página de login
-        this.router.navigate(['/login']);
-      }
+  addAuthHeaders(request: HttpRequest<any>): HttpRequest<any> {
+    let newHeaders = request.headers;
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      const decodedToken: DecodedToken = jwt_decode(token);
+      newHeaders = newHeaders.append('Authorization', `Bearer ${token}`);
+      newHeaders = newHeaders.append('UserID', `${decodedToken.user.user_id}`);
+      newHeaders = newHeaders.append('ApiKey', `${decodedToken.apiKey}`);
+    }
+    return request.clone({ headers: newHeaders });
+  }
+
+  refreshTokensAndRetry(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> | Observable<never> {
+    return this.refreshTokens().pipe(
+      switchMap((newToken: string) => {
+        const clonedRequest = req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${newToken}`,
+          },
+        });
+        return next.handle(clonedRequest);
+      }),
+      catchError((error) => {
+        this.logout();
+        return throwError(error);
+      })
+    );
   }
 
   private storeTokens(tokens: {
@@ -107,5 +132,10 @@ export class AuthService {
     const decoded: DecodedToken = jwt_decode(token);
     const expirationDate = new Date(decoded.exp * 1000);
     return expirationDate.valueOf() <= new Date().valueOf();
+  }
+
+  private checkIfLoggedIn(): boolean {
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    return isAuthenticated === 'true' && !this.isTokenExpired();
   }
 }

@@ -1,12 +1,12 @@
 <div class="container">
     <div class="mb-3">
-        <input (ngModel)="searchText" class="form-control" placeholder="Buscar...">
+        <input [(ngModel)]="searchText" #searchInput class="form-control" placeholder="Buscar...">
     </div>
 
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">ID de Ciudad</th>
+                <th scope="col">Acciones</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">ID de País</th>
                 <th scope="col">ID de Departamento</th>
@@ -15,29 +15,27 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let city of cities ">
-                <td>{{ city.city_id }}</td>
+            <tr *ngFor="let city of cities | filter: searchText | paginate : pagingConfig">
+                <td class="text-center">
+                    <button class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>
+                        Editar</button>
+                    <button class="btn"
+                        [ngClass]="{'btn-outline-danger': city.status, 'btn-outline-success': city.status}">
+                        <i class="fa-solid fa-ban"></i> {{city.status ? 'Desactivar': 'Activar'}}</button>
+                </td>
                 <td>{{ city.name }}</td>
                 <td>{{ city.country_id }}</td>
                 <td>{{ city.department_id }}</td>
                 <td>{{ city.code_dane }}</td>
-                <td>{{ city.status }}</td>
+                <td>{{ city.status ? 'Activo' : 'Inactivo' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <nav aria-label="Page navigation" class="mt-3" *ngIf="this.totalRecords > 1">
-        <ul class="pagination">
-            <li class="page-item" [class.disabled]="this.page === 1">
-                <a class="page-link" href="#" (click)="onPageChange(this.page - 1)">Anterior</a>
-            </li>
-            <li class="page-item" *ngFor="let page of [].constructor(this.totalRecords) as i"
-                [class.active]="this.page === i + 1">
-                <a class="page-link" href="#" (click)="onPageChange(i + 1)">{{ i + 1 }}</a>
-            </li>
-            <li class="page-item" [class.disabled]="this.page === this.totalRecords">
-                <a class="page-link" href="#" (click)="onPageChange(this.page + 1)">Siguiente</a>
-            </li>
-        </ul>
-    </nav>
+
+    <app-paginator [totalRecords]="pagingConfig.totalItems" [rows]="itemsPerPage"
+        (pageChange)="onPageChange($event)"></app-paginator>
+
+
+
 </div>

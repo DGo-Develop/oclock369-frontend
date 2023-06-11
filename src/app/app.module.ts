@@ -13,10 +13,9 @@ import { CardsModule } from './shared/cards/cards.module';
 import { HttpErrorInterceptor } from './core/interceptors/error.interceptor';
 import { MessageModalComponent } from './core/message-modal/message-modal.component';
 import { BreadcrumbModule } from './shared/breadcrumb/breadcrum.module';
-import { FilterPipe } from './core/pipes/filter.pipe';
 
 @NgModule({
-  declarations: [AppComponent, MessageModalComponent, FilterPipe],
+  declarations: [AppComponent, MessageModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

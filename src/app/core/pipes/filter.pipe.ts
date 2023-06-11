@@ -5,13 +5,21 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
   transform(items: any[], searchText: string): any[] {
-    if (!items) return [];
-    if (!searchText) return items;
+    if (!items || !searchText) {
+      return items;
+    }
 
     searchText = searchText.toLowerCase();
 
-    return items.filter((it) => {
-      return it.toLowerCase().includes(searchText);
+    return items.filter((item: any) => {
+      for (let key in item) {
+        if (item.hasOwnProperty(key) && typeof item[key] === 'string') {
+          if (item[key].toLowerCase().includes(searchText)) {
+            return true;
+          }
+        }
+      }
+      return false;
     });
   }
 }
